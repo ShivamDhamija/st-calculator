@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+
+.screen {
+	width:250px;
+	height : 50px;
+	background-color:white;
+	border:2px solid #fa7202;
+	box-sizing:border-box;
+	font-size:40px;
+	direction:ltr;
+	text-align:right;
+	overflow:auto;
+}
+.pad {
+	width:250px;
+	display:flex;
+	justify-content:space-between;
+}
+.operator-pad {
+	width:250px;
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	padding:5px 0;
+}
+.operator-pad button {
+	background-color:#fa7202;
+	border:none;
+	padding:10px 25px;
+	color:white;
+}
+.pad button {
+	padding:10px 22px;
+}
+.num-pad {
+	width : 75%;
+	display:flex;
+	flex-direction:column;
+	justify-content: space-between;
+}
+.first,.second,.third,.fourth {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+
+	padding:5px 0;
+}
+.equate {
+	background-color: #ffe4cf;
+	width:21%;
+	display:flex;
+	align-items:center;
+	justify-content: center;
+	text-align:center;
+	color:orange;
+}
+</style>
+</head>
+<body>
+
+	<div>
+		<input class="screen">
+		<div class="operator-pad">
+			<button class="plus-operator">+</button>
+			<button class="minus-operator">-</button>
+			<button class="multiply-operator">*</button>
+			<button class="divide-operator">/</button>
+		</div>
+
+		<div class="pad">
+			<div class="num-pad">
+			<div class="first">
+				<button>7</button>
+				<button>8</button>
+				<button>9</button>
+			</div>
+			<div class="second">
+				<button>4</button>
+				<button>5</button>
+				<button>6</button>
+			</div>
+			<div class="third">
+				<button>1</button>
+				<button>2</button>
+				<button>3</button>
+			</div>
+			<div class="fourth">
+				<button>0</button>
+				<button>.</button>
+				<button>C</button>
+			</div>
+		</div>
+
+			<button class="equate">=</button>
+		</div>
+
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        let text = ""
+
+function getAndSetValue(ref) {
+	text= $(".screen").val()
+	if($(ref).text() === "C") {
+		text="";
+		$(".screen").val(text)
+		return;
+	}
+	$(".screen").val(text + $(ref).text())
+}
+$(".operator-pad").children().on("click", function() {
+	getAndSetValue(this)
+})
+
+$(".first").children().on("click", function() {
+	getAndSetValue(this)
+})
+
+$(".second").children().on("click", function() {
+	getAndSetValue(this)
+})
+
+$(".third").children().on("click", function() {
+	getAndSetValue(this)
+})
+
+$(".fourth").children().on("click", function() {	getAndSetValue(this)
+})
+
+$(".equate").on("click", function() {
+	text=$(".screen").val()
+	let result = eval(text)
+	$(".screen").val(result)
+})
+</script>
+</body>
+</html>
